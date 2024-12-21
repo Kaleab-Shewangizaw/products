@@ -6,37 +6,19 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/api/products", async (req, res) => {
-  const product = req.body;
-
-  if (!product.name || !product.price || !product.image) {
-    return res.status(400).json({
-      success: false,
-      message: "Please provide all the details",
-    });
+app.post('/api/products', async(req, res) => {
+  const products = req.body
+  if(!products.name || !products.price || !products.image){
+    return res.status(400).json({message: "Please provide all the required!"})
   }
-  const newProduct = new Product(product);
 
-  try {
-    await newProduct.save();
-    res.status(201).json({
-      success: true,
-      data: newProduct,
-    });
-  } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
-  }
-});
+  products = new Product(products)
 
-app.delete('/api/products/:id', async(req, res)=>{
   try{
-    const product = await Product.findByIdAndDelete(params.id)
-    if(!product){
-      return res.status(404).json({success: false, message: "product not found"})
-    }
-    return res.status(200).json({success: true, message: "product deleted successfully", data: product})
+    await products.save()
+    res.status(200).json({success: true, message: "product added successfully", data: products})
   }catch(err){
-    res.json(500).json({success: false, message: err.message})
+    res.status(500).json({success: false, message: err.message})
   }
 })
 
