@@ -1,14 +1,11 @@
-
-// import React from 'react'
-
-import {Button} from "./components/ui/button"
+// import { Button } from "./components/ui/button"
+// import { HStack } from "@chakra-ui/react"
+// // import React from 'react'
 
 function App() {
   
   return (
-    
-      <Button>Hello</Button>
-    
+    <h1>this is an h1</h1>
   )
 }
 
